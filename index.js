@@ -14,11 +14,6 @@ const questions = () =>
     },
     {
       type: "input",
-      name: "toc",
-      message: "Table of Contents?",
-    },
-    {
-      type: "input",
       name: "description",
       message: "Description?",
     },
@@ -41,55 +36,67 @@ const questions = () =>
       type: "input",
       name: "license",
       message: "Licenses?",
-      choices: "",
     },
     {
       type: "input",
       name: "questions",
       message: "Enter your Github username?",
     },
+    {
+      type: "input",
+      name: "email",
+      message: "Enter your email?",
+    },
   ]);
 
 // function to write README file
-const writeToFile = (answers) =>
-   `Title: ${answers.title}
+const generateMarkdown = (answers) =>
+   `# Title: ${answers.title}
 
 
 
-   Table of Contents: ${answers.toc}
+   ### Table of Contents:
+
+   * Description
+   * Installation
+   * Usage
+   * Contributors
+   * License
+   * Questions
+   
+   ---
+   
 
 
+   ### Description: ${answers.description}
+
+   ---
 
 
+   ### Installation: ${answers.installation}
 
-   Description: ${answers.description}
+   ---
 
+   ### Usage: ${answers.usage}
 
-
-
-   Installation: ${answers.installation}
-
-
-
-   Usage: ${answers.usage}
+   ---
 
 
+   ### Contributors: ${answers.contributing}
+
+   ---
+
+   ### License: ${answers.license}
 
 
-   Contributors: ${answers.contributing}
+   ---
 
 
-
-   License: ${answers.license}
-
-
-
-
-
-   Questions: ${answers.questions}`;
+   ### Questions: If you have any questions please contact me at ${answers.email}
+   [${answers.questions}](https://github.com/Plabounty)`;
 
 // function call to initialize program
 questions()
-  .then((answers) => writeFileAsync("test.md", writeToFile(answers)))
+  .then((answers) => writeFileAsync("test.md", generateMarkdown(answers)))
   .then(() => console.log("Successfully wrote to test.md"))
   .catch((err) => console.error(err));
