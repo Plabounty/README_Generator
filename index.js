@@ -97,6 +97,6 @@ const generateMarkdown = (answers) =>
 
 // function call to initialize program
 questions()
-  .then((answers) => writeFileAsync("test.md", generateMarkdown(answers)))
+  .then((answers) => writeFileAsync("sample.md", generateMarkdown(answers)))
   .then(() => console.log("Successfully wrote to test.md"))
   .catch((err) => console.error(err));
